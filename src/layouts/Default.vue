@@ -1,18 +1,26 @@
 <script setup lang="ts">
 import AppHeader from "@/components/app/AppHeader.vue";
-import AppSidebar from "@/components/app/AppSidebar.vue";
 </script>
 
 <template>
   <v-app>
-    <v-layout class="align-center  bg-white">
-      <AppHeader />
-      <AppSidebar />
-      <v-main class="fill-height">
-        <v-container>
-          <slot />
-        </v-container>
-      </v-main>
-    </v-layout>
+    <AppHeader />
+    <v-main class="bg-grey-lighten-3">
+      <v-container>
+        <v-row>
+          <v-col>
+            <v-sheet min-height="70vh" rounded="lg">
+              <slot />
+            </v-sheet>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-main>
   </v-app>
 </template>
+
+<style lang="scss" scoped>
+.w-75 {
+  width : 75%;
+}
+</style>
