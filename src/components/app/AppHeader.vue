@@ -7,19 +7,12 @@
           <span class="text-orange">Pixel</span><span class="text-blue">Point</span>
         </v-sheet>
       </v-sheet>
-
       <v-spacer />
-
       <v-responsive max-width="260">
         <v-text-field density="compact" hide-details variant="solo" />
       </v-responsive>
     </v-container>
   </v-app-bar>
-<!--  <v-app-bar class="w-75">-->
-<!--    <v-container>-->
-<!--   -->
-<!--    </v-container>-->
-<!--  </v-app-bar>-->
 </template>
 
 <style lang="scss" scoped>

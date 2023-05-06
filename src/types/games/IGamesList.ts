@@ -32,7 +32,7 @@ export type Platforms = {
   abbreviation: string
   api_detail_url: StringOrNull
   id: number
-  name: "PC"
+  name: string
   site_detail_url: StringOrNull
 }
 
