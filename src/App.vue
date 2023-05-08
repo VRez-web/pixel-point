@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import DefaultLayout from "@/layouts/Default.vue";
 import {onBeforeMount} from "vue";
-import {getGenres} from "@/services/genres";
+import {useGenresStore} from "@/store/genres";
 
-onBeforeMount(() => getGenres())
+const storeGenres = useGenresStore()
+
+onBeforeMount(() => storeGenres.getAllGenres())
 </script>
 
 <template>
