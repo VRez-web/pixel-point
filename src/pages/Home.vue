@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import {computed, onBeforeMount, Ref, ref} from "vue";
-import {getGames} from "@/services/games";
-import {IGame, IGamesList} from "@/types/games/IGamesList";
 import HomeSlider from "@/components/HomeSlider.vue";
+import HomeSectionLastUpdates from "@/components/HomeSectionLastUpdates.vue";
+import {computed, onBeforeMount, ref} from "vue";
+import {getGames} from "@/services/games";
+import {IGame} from "@/types/games/IGamesList";
 
-const games: Ref<IGame[] | null> = ref(null)
+const games = ref<IGame[] | null>(null)
+const lastReleases = ref<IGame[] | null>(null)
 
-const imagesSlider = computed(() => games.value?.map(game => ({
+const sliderImages = computed(() => games.value?.map(game => ({
       img: game.image.medium_url,
       descr: game.deck,
       name: game.name
@@ -19,9 +21,21 @@ const getMostExpectedGames = async (): Promise<void> => {
   games.value = res.results
 }
 
-onBeforeMount(() => getMostExpectedGames())
+const getLastReleases = async (): Promise<void> => {
+  const date = new Date().toUTCString()
+  const settings = `&filter=date_added:2023-01-01 00:00|2023-12-12 00:00:00&limit=20&offset=900`
+  const res = await getGames(settings)
+  lastReleases.value = res.results
+}
+
+
+onBeforeMount(() => {
+  getMostExpectedGames()
+  getLastReleases()
+})
 </script>
 
 <template>
-  <HomeSlider :images="imagesSlider" />
+  <HomeSlider :images="sliderImages" />
+  <HomeSectionLastUpdates :releases="lastReleases" />
 </template>

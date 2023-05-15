@@ -13,7 +13,7 @@ import AppSidebar from "@/components/app/AppSidebar.vue";
             <v-sheet min-height="70vh" rounded="lg">
               <v-container class="d-flex justify-space-between">
                 <AppSidebar />
-                <div class="w-75">
+                <div class="w-75 pl-lg-10">
                   <slot />
                 </div>
               </v-container>
