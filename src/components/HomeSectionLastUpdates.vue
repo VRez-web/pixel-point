@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {IGame} from "@/types/games/IGamesList";
+import GameCard from "@/components/GameCard.vue";
 
 const props = defineProps<{
   releases: IGame[]
@@ -7,8 +8,6 @@ const props = defineProps<{
 </script>
 
 <template>
-  <h4 class="text-h4">Last updates:</h4>
-  <div v-for="release in releases" :key="release.id">
-    {{ release.name }}
-  </div>
+  <h4 class="text-h4 mb-2">Last updates:</h4>
+  <GameCard v-for="release in releases" :key="release.id" :model="release" />
 </template>

@@ -6,7 +6,7 @@ import {getGames} from "@/services/games";
 import {IGame} from "@/types/games/IGamesList";
 
 const games = ref<IGame[] | null>(null)
-const lastReleases = ref<IGame[] | null>(null)
+const lastUpdatesGame = ref<IGame[] | null>(null)
 
 const sliderImages = computed(() => games.value?.map(game => ({
       img: game.image.medium_url,
@@ -21,21 +21,23 @@ const getMostExpectedGames = async (): Promise<void> => {
   games.value = res.results
 }
 
-const getLastReleases = async (): Promise<void> => {
+const getLastUpdatesGame = async (): Promise<void> => {
+  // &offset=900
   const date = new Date().toUTCString()
-  const settings = `&filter=date_added:2023-01-01 00:00|2023-12-12 00:00:00&limit=20&offset=900`
+  console.log(date)
+  const settings = `&filter=date_added:2023-05-01 00:00|2023-05-30 00:00:00&limit=20offset=20`
   const res = await getGames(settings)
-  lastReleases.value = res.results
+  lastUpdatesGame.value = res.results
 }
 
 
 onBeforeMount(() => {
   getMostExpectedGames()
-  getLastReleases()
+  getLastUpdatesGame()
 })
 </script>
 
 <template>
   <HomeSlider :images="sliderImages" />
-  <HomeSectionLastUpdates :releases="lastReleases" />
+  <HomeSectionLastUpdates :releases="lastUpdatesGame" />
 </template>
