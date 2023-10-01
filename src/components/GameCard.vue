@@ -10,17 +10,19 @@ const description = computed<string>(() => props.model.description || props.mode
 </script>
 
 <template>
-  <v-card class="mb-2" :border="true">
-    <v-card-title>{{ model.name }}</v-card-title>
-    <v-spacer></v-spacer>
-    <div class="d-flex">
-      <div>
-        <v-img :src="model.image.small_url" :width="250" :height="300"  cover/>
+  <router-link :to="{name:'game-details', params:{id:model.guid, gameName:model.name}}">
+    <v-card class="mb-2" :border="true">
+      <v-card-title>{{ model.name }}</v-card-title>
+      <v-spacer></v-spacer>
+      <div class="d-flex">
+        <div>
+          <v-img :src="model.image.small_url" :width="250" :height="300" cover />
+        </div>
+        <div>
+          <v-card-text>{{ description }}</v-card-text>
+          <v-card-subtitle>Last time updated:{{ model.date_last_updated }}</v-card-subtitle>
+        </div>
       </div>
-      <div>
-        <v-card-text>{{ description }}</v-card-text>
-        <v-card-subtitle>Last time updated:{{ model.date_last_updated }}</v-card-subtitle>
-      </div>
-    </div>
-  </v-card>
+    </v-card>
+  </router-link>
 </template>

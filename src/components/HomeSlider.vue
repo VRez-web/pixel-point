@@ -19,7 +19,7 @@ const props = defineProps<{
             :class="['ma-4', selectedClass]"
             :image="img"
             height="200"
-            width="100"
+            width="130"
             @click="toggle"
         />
       </v-slide-group-item>
