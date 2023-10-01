@@ -11,7 +11,7 @@ import AppSidebar from "@/components/app/AppSidebar.vue";
         <v-row>
           <v-col>
             <v-sheet min-height="70vh" rounded="lg">
-              <v-container class="d-flex justify-space-between">
+              <v-container class="d-flex align-start justify-space-between">
                 <AppSidebar />
                 <div class="w-75 pl-lg-10">
                   <slot />
