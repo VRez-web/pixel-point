@@ -7,11 +7,16 @@ import {resolve} from 'path'
 export default defineConfig({
   server: {
     proxy: {
+      "/games": {
+        target: "https://www.giantbomb.com/",
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/games/, ""),
+      },
       "/api": {
         target: "https://www.giantbomb.com/",
         changeOrigin: true,
         secure: false,
-        // rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
   },
