@@ -6,19 +6,7 @@ import {resolve} from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
-    proxy: {
-      "/games": {
-        target: "https://www.giantbomb.com/",
-        changeOrigin: true,
-        secure: false,
-        rewrite: (path) => path.replace(/^\/games/, ""),
-      },
-      "/api": {
-        target: "https://www.giantbomb.com/",
-        changeOrigin: true,
-        secure: false,
-      },
-    },
+    cors: false,
   },
   resolve: {
     alias: {
