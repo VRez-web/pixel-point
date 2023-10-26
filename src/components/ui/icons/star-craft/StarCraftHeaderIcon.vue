@@ -2,7 +2,6 @@
   <svg xmlns="http://www.w3.org/2000/svg"
        width="24.000000px" height="22.000000px" viewBox="0 0 24.000000 24.000000"
        preserveAspectRatio="xMidYMid meet">
-
     <g transform="translate(0.000000,24.000000) scale(0.100000,-0.100000)" stroke="none">
       <path d="M47 223 c-17 -17 19 -33 73 -33 54 0 90 16 73 33 -11 11 -48 8 -61
 -5 -9 -9 -15 -9 -24 0 -13 13 -50 16 -61 5z" />
