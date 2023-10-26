@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import CSIcon from '@/components/ui/icons/CSIcon.vue'
-import DotaIcon from '@/components/ui/icons/DotaIcon.vue'
-import LOLIcon from '@/components/ui/icons/LOLIcon.vue'
-import ValorantIcon from '@/components/ui/icons/ValorantIcon.vue'
-import StarCraftIcon from '@/components/ui/icons/StarCraftIcon.vue'
-import RocketLeague from '@/components/ui/icons/RocketLeague.vue'
-import RainbowSixIcon from '@/components/ui/icons/RainbowSixIcon.vue'
-import OverwatchIcon from '@/components/ui/icons/OverwatchIcon.vue'
+import CSIcon from '@/components/ui/icons/cs/CSHeaderIcon.vue'
+import DotaIcon from '@/components/ui/icons/dota/DotaHeaderIcon.vue'
+import LOLIcon from '@/components/ui/icons/lol/LOLHeaderIcon.vue'
+import ValorantIcon from '@/components/ui/icons/valorant/ValorantHeaderIcon.vue'
+import StarCraftIcon from '@/components/ui/icons/star-craft/StarCraftHeaderIcon.vue'
+import RocketLeague from '@/components/ui/icons/rocket-league/RocketLeagueHeaderIcon.vue'
+import RainbowSixIcon from '@/components/ui/icons/rs6/RainbowSixHeaderIcon.vue'
+import OverwatchIcon from '@/components/ui/icons/overwatch/OverwatchHeaderIcon.vue'
 import type {Component} from 'vue'
 
 interface IGame {

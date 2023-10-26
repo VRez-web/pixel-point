@@ -1,9 +1,28 @@
 <script setup lang="ts">
-import {getLiveGames} from "@/services/test";
+import HomeMatchesSection from "@/components/home/HomeMatchesSection.vue";
+import {ref} from "vue";
+import {useFetch} from "@/composables/app/useFetch";
+import {ILiveMatch} from "@/types/base/matches";
 
-getLiveGames()
+const {
+  isLoading: isLoadingLiveMatches,
+  isError: isErrorLiveMatches,
+  data: liveMatchesData
+} = useFetch<ILiveMatch[]>('matches/running?sort=-begin_at')
+
+const liveMatches = ref({
+  data: liveMatchesData,
+  isLoading: isLoadingLiveMatches,
+  isError: isErrorLiveMatches
+})
+
 </script>
 
 <template>
-<div>123</div>
+  <div class="d-flex">
+    <HomeMatchesSection :live-matches="liveMatches" />
+    <v-sheet>
+      askd
+    </v-sheet>
+  </div>
 </template>
