@@ -30,12 +30,12 @@ const games: IGame[] = [
 <template>
   <v-app-bar flat class="align-start">
     <v-container class="pt-5">
-      <div class="w-100 d-flex align-center mb-1">
-        <router-link v-for="game in games" :key="game.id" to="/" class="header__game d-flex align-center">
-          <component v-if="game.iconName" :is="game.iconName" class="mr-2" />
-          {{ game.title }}
-        </router-link>
-      </div>
+<!--      <div class="w-100 d-flex align-center mb-1">-->
+<!--        <router-link v-for="game in games" :key="game.id" to="/" class="header__game d-flex align-center">-->
+<!--          <component v-if="game.iconName" :is="game.iconName" class="mr-2" />-->
+<!--          {{ game.title }}-->
+<!--        </router-link>-->
+<!--      </div>-->
       <router-link :to="{name:'home'}" class="logo">
         <v-sheet class="d-flex align-center">
           <img class="v-img w-3" :src="'/logo.svg'" alt="logo">
