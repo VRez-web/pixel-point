@@ -1,10 +1,11 @@
 <script lang="ts" setup>
-import {IMatchPlayerResult, IMatchTeamResult, IPlayerOpponent, ITeamOpponent} from "@/types/base/matches";
+import NoImageIcon from "@/components/ui/icons/NoImageIcon.vue";
+import {TMatchResult, TMatchResultItem, TOpponent} from "@/types/match/match";
 import {computed} from "vue";
 
 interface IProp {
-  opponents: IPlayerOpponent[] | ITeamOpponent[]
-  score: IMatchTeamResult[] | IMatchPlayerResult[]
+  opponents: TOpponent
+  score: TMatchResult
 }
 
 const props = defineProps<IProp>()
@@ -13,7 +14,7 @@ const props = defineProps<IProp>()
 const formatOpponent = computed(() => props.opponents.map(opponent => {
   return {
     ...opponent.opponent,
-    score: props.score.find(score => score.team_id === opponent.opponent.id).score
+    score: props.score.find((score: TMatchResultItem) => (score.team_id || score.player_id) === opponent.opponent.id).score
   }
 }))
 const firstOpponent = computed(() => formatOpponent.value.at(0))
@@ -23,7 +24,8 @@ const secondOpponent = computed(() => formatOpponent.value.at(1))
 <template>
   <v-row align="center" justify="center">
     <div class="team d-flex align-center flex-column mr-auto" :title="firstOpponent.name">
-      <img :src="firstOpponent.image_url" alt="" class="team-logo">
+      <img v-if="firstOpponent.image_url" :src="firstOpponent.image_url" alt="" class="team-logo">
+      <NoImageIcon v-else />
       <p class="team-name">{{ firstOpponent.name }}</p>
     </div>
     <div>
@@ -32,7 +34,8 @@ const secondOpponent = computed(() => formatOpponent.value.at(1))
       <span>{{ secondOpponent.score }}</span>
     </div>
     <div class="team d-flex align-center flex-column ml-auto" :title="secondOpponent.name">
-      <img :src="secondOpponent.image_url" alt="" class="team-logo">
+      <img v-if="secondOpponent.image_url" :src="secondOpponent.image_url" alt="" class="team-logo">
+      <NoImageIcon v-else />
       <p class="team-name">{{ secondOpponent.name }}</p>
     </div>
   </v-row>
