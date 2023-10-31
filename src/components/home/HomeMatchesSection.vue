@@ -2,10 +2,10 @@
 import CardMatchesInfo from "@/components/CardMatchesInfo.vue";
 import {computed, Ref, ref} from "vue";
 import {filterGames} from "@/utils/common";
-import {TypeMatchList} from "@/types/match/match";
+import {TMatchList} from "@/types/match/match";
 
 interface IMatchesProp {
-  data: TypeMatchList
+  data: TMatchList
   isLoading: boolean
   isError: boolean
 }

@@ -35,7 +35,7 @@ export const MATCH_TYPE = {
   "red_bull_home_ground": 'red bull home ground'
 } as const
 
-export type MatchType = keyof typeof MATCH_TYPE
+export type TMatchType = keyof typeof MATCH_TYPE
 
 enum OpponentTypeEnum {
   "Player",
@@ -95,6 +95,8 @@ export interface ITeamOpponent {
   type: OpponentTypeEnum
 }
 
+export type TOpponent = IPlayerOpponent[] | ITeamOpponent[]
+
 export interface IMatchTeamResult {
   team_id: number
   score: number
@@ -104,6 +106,9 @@ export interface IMatchPlayerResult {
   player_id: number
   score: number
 }
+
+export type TMatchResult = IMatchPlayerResult[] | IMatchTeamResult[]
+export type TMatchResultItem = IMatchPlayerResult | IMatchTeamResult
 
 interface ISerie {
   begin_at: DateOrNull
@@ -187,12 +192,12 @@ export interface IMatch {
   forfeit: boolean
   game_advantage: NumberOrNull
   number_of_games: number
-  match_type: MatchType
-  results: IMatchPlayerResult[] | IMatchTeamResult[]
+  match_type: TMatchType
+  results: TMatchResult
   videogame: IVideoGame
   videogame_title: IVideoGameTitle
   videogame_version: IVideoGameVersion
-  opponents: ITeamOpponent[] | IPlayerOpponent[]
+  opponents: TOpponent
   winner_type: WinnerTypeEnum
   winner: IPlayerOpponent | ITeamOpponent
   winner_id: number
@@ -215,4 +220,5 @@ export interface IMatch {
   tournament_id: number
 }
 
-export type TypeMatchList = IPastMatch[] | ILiveMatch[] | IUpcomingMatch []
+export type TMatchList = IPastMatch[] | ILiveMatch[] | IUpcomingMatch []
+export type TMatchListItem = IPastMatch | ILiveMatch | IUpcomingMatch

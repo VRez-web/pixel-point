@@ -2,7 +2,7 @@
 import HomeMatchesSection from "@/components/home/HomeMatchesSection.vue";
 import {Ref, ref} from "vue";
 import {useFetch} from "@/composables/app/useFetch";
-import {TypeMatchList} from "@/types/match/match";
+import {TMatchList} from "@/types/match/match";
 
 const matches: Ref = ref({
   data: [],
@@ -25,7 +25,7 @@ const getMatches = (tabName: string = 'live') => {
     isLoading,
     isError,
     data
-  } = useFetch<TypeMatchList>(urlsForDate[tabName])
+  } = useFetch<TMatchList>(urlsForDate[tabName])
   matches.value.data = data
   matches.value.isError = isError
   matches.value.isLoading = isLoading

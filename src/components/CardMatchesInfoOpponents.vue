@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import {IMatchPlayerResult, IMatchTeamResult, IPlayerOpponent, ITeamOpponent} from "@/types/match/match";
-import {computed} from "vue";
 import NoImageIcon from "@/components/ui/icons/NoImageIcon.vue";
+import {TMatchResult, TMatchResultItem, TOpponent} from "@/types/match/match";
+import {computed} from "vue";
 
 interface IProp {
-  opponents: IPlayerOpponent[] | ITeamOpponent[]
-  score: IMatchTeamResult[] | IMatchPlayerResult[]
+  opponents: TOpponent
+  score: TMatchResult
 }
 
 const props = defineProps<IProp>()
@@ -14,7 +14,7 @@ const props = defineProps<IProp>()
 const formatOpponent = computed(() => props.opponents.map(opponent => {
   return {
     ...opponent.opponent,
-    score: props.score.find(score => (score.team_id || score.player_id) === opponent.opponent.id).score
+    score: props.score.find((score: TMatchResultItem) => (score.team_id || score.player_id) === opponent.opponent.id).score
   }
 }))
 const firstOpponent = computed(() => formatOpponent.value.at(0))
