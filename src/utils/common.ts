@@ -1,4 +1,4 @@
-import {ILiveMatch} from "@/types/base/matches";
+import {ILiveMatch} from "@/types/match/match";
 
 export const formatDate = (date: string | Date, options = {}): string => {
   const formatDate = new Date(date)

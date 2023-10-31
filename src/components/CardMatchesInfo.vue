@@ -2,11 +2,11 @@
 import MatchIcons from "@/components/MatchIcons.vue";
 import CardMatchesInfoOpponents from "@/components/CardMatchesInfoOpponents.vue";
 import {computed} from "vue";
-import {ILiveMatch, MatchTypeEnum} from "@/types/base/matches";
+import {IMatch, MATCH_TYPE} from "@/types/match/match";
 import {formatDate} from "@/utils/common";
 
 interface IProps {
-  model: ILiveMatch
+  model: IMatch
 }
 
 const props = defineProps<IProps>()
@@ -14,7 +14,7 @@ const props = defineProps<IProps>()
 const date = computed<string>(() => props.model.begin_at
     ? formatDate(props.model.begin_at, {hour: "numeric", minute: "numeric",})
     : '')
-const matchType = computed(() => MatchTypeEnum[props.model.match_type])
+const matchType = computed(() => MATCH_TYPE[props.model.match_type])
 </script>
 
 <template>
@@ -34,7 +34,7 @@ const matchType = computed(() => MatchTypeEnum[props.model.match_type])
 
 <style lang="scss" scoped>
 .match {
-  background-color : #87a3bf;
+  background-color : #4ea6ff;
 
   &-date {
     font-size : 12px;

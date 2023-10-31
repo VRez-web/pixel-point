@@ -1,4 +1,7 @@
 import {BooleanOrNull, DateOrNull, NumberOrNull, StringOrNull} from "@/types/base/BaseTypes";
+import {IPastMatch} from "@/types/match/pastMatch";
+import {ILiveMatch} from "@/types/match/liveMatch";
+import {IUpcomingMatch} from "@/types/match/upcomingMatch";
 
 interface ILive {
   opens_at: StringOrNull
@@ -15,7 +18,7 @@ interface ILeague {
   url: StringOrNull
 }
 
-interface IMapPick {
+export interface IMapPick {
   id: number
   image_url: StringOrNull
   name: string
@@ -23,14 +26,16 @@ interface IMapPick {
   videogame_versions: string[]
 }
 
-export enum MatchTypeEnum {
-  "all_games_played" = 'all games played',
-  "best_of" = 'best of',
-  "custom" = 'custom',
-  "first_to" = 'first_to',
-  "ow_best_of" = 'ow best of',
-  "red_bull_home_ground" = 'red bull home ground'
-}
+export const MATCH_TYPE = {
+  "all_games_played": 'all games played',
+  "best_of": 'best of',
+  "custom": 'custom',
+  "first_to": 'first_to',
+  "ow_best_of": 'ow best of',
+  "red_bull_home_ground": 'red bull home ground'
+} as const
+
+export type MatchType = keyof typeof MATCH_TYPE
 
 enum OpponentTypeEnum {
   "Player",
@@ -160,7 +165,7 @@ interface IVideoGameVersion {
 }
 
 // think about opponent type
-interface IMatch {
+interface IGame {
   begin_at: DateOrNull
   complete: boolean
   detailed_stats: boolean
@@ -168,10 +173,34 @@ interface IMatch {
   finished: boolean
   forfeit: boolean
   id: number
+  match_id: number
+  status: StatusEnum
+  winner: { id: number, type: WinnerTypeEnum }
+  winner_type: WinnerTypeEnum
+}
+
+export interface IMatch {
+  begin_at: DateOrNull
+  detailed_stats: boolean
+  draw: boolean
+  end_at: DateOrNull
+  forfeit: boolean
+  game_advantage: NumberOrNull
+  number_of_games: number
+  match_type: MatchType
+  results: IMatchPlayerResult[] | IMatchTeamResult[]
+  videogame: IVideoGame
+  videogame_title: IVideoGameTitle
+  videogame_version: IVideoGameVersion
+  opponents: ITeamOpponent[] | IPlayerOpponent[]
+  winner_type: WinnerTypeEnum
+  winner: IPlayerOpponent | ITeamOpponent
+  winner_id: number
+  games: IGame[]
+  id: number
   league: ILeague
   league_id: number
   live: ILive
-  map_picks: IMapPick[] | null
   modified_at: Date
   name: string
   original_scheduled_at: StringOrNull
@@ -184,25 +213,6 @@ interface IMatch {
   streams_list: IStreamsList
   tournament: ITournament
   tournament_id: number
-  videogame_title: IVideoGameTitle
-  videogame_version: IVideoGameVersion
-  winner: IPlayerOpponent | ITeamOpponent
-  winner_id: number
-  winner_type: WinnerTypeEnum
 }
 
-export interface ILiveMatch {
-  begin_at: DateOrNull
-  detailed_stats: boolean
-  draw: boolean
-  end_at: DateOrNull
-  forfeit: boolean
-  game_advantage: NumberOrNull
-  number_of_games: number
-  match_type: MatchTypeEnum
-  results: IMatchPlayerResult[] | IMatchTeamResult[]
-  videogame: IVideoGame
-  opponents: ITeamOpponent[] | IPlayerOpponent[]
-  winner_type: WinnerTypeEnum
-  games: IMatch[]
-}
+export type TypeMatchList = IPastMatch[] | ILiveMatch[] | IUpcomingMatch []
