@@ -9,7 +9,7 @@ interface ILive {
   url: StringOrNull
 }
 
-interface ILeague {
+export interface ILeague {
   id: number
   image_url: StringOrNull
   modified_at: Date
@@ -110,7 +110,7 @@ export interface IMatchPlayerResult {
 export type TMatchResult = IMatchPlayerResult[] | IMatchTeamResult[]
 export type TMatchResultItem = IMatchPlayerResult | IMatchTeamResult
 
-interface ISerie {
+export interface ISerie {
   begin_at: DateOrNull
   end_at: DateOrNull
   full_name: string
@@ -133,7 +133,7 @@ interface IStreamsList {
   raw_url: string
 }
 
-interface ITournament {
+export interface ITournament {
   begin_at: DateOrNull
   detailed_stats: boolean
   end_at: DateOrNull
@@ -151,13 +151,13 @@ interface ITournament {
   winner_type: WinnerTypeEnum
 }
 
-interface IVideoGame {
+export interface IVideoGame {
   id: number
   name: string
   slug: string
 }
 
-interface IVideoGameTitle {
+export interface IVideoGameTitle {
   id: number
   name: string
   slug: string

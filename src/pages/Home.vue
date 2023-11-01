@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import HomeMatchesSection from "@/components/home/HomeMatchesSection.vue";
+import HomeNewsSection from "@/components/home/HomeNewsSection.vue";
 import {Ref, ref} from "vue";
 import {useFetch} from "@/composables/app/useFetch";
 import {TMatchList} from "@/types/match/match";
@@ -30,15 +31,27 @@ const getMatches = (tabName: string = 'live') => {
   matches.value.isError = isError
   matches.value.isLoading = isLoading
 }
-
 getMatches()
+
+
+const news: Ref = ref({
+  data: [],
+  isLoading: true,
+  isError: false
+})
+const getNews = () => {
+  const {isError, isLoading, data} =
+      useFetch('incidents?per_page=20&type=[league,serie,team,tournament,player]')
+  news.value.data = data
+  news.value.isError = isError
+  news.value.isLoading = isLoading
+}
+getNews()
 </script>
 
 <template>
   <div class="d-flex">
     <HomeMatchesSection :matches="matches" @change-tab="getMatches" />
-    <v-sheet>
-      askd
-    </v-sheet>
+    <HomeNewsSection />
   </div>
 </template>
