@@ -9,7 +9,7 @@ interface ILive {
   url: StringOrNull
 }
 
-interface ILeague {
+export interface ILeague {
   id: number
   image_url: StringOrNull
   modified_at: Date
@@ -65,33 +65,37 @@ enum TierEnum {
   "unranked"
 }
 
+export interface IPlayer {
+  age: NumberOrNull
+  birthday: StringOrNull
+  first_name: StringOrNull
+  id: number
+  image_url: StringOrNull
+  last_name: StringOrNull
+  modified_at: Date
+  name: string
+  nationality: StringOrNull
+  role: StringOrNull
+  slug: StringOrNull
+}
+
+export interface ITeam {
+  acronym: StringOrNull
+  id: number
+  image_url: StringOrNull
+  location: StringOrNull
+  modified_at: Date
+  name: string
+  slug: StringOrNull
+}
+
 export interface IPlayerOpponent {
-  opponent: {
-    age: NumberOrNull
-    birthday: StringOrNull
-    first_name: StringOrNull
-    id: number
-    image_url: StringOrNull
-    last_name: StringOrNull
-    modified_at: Date
-    name: string
-    nationality: StringOrNull
-    role: StringOrNull
-    slug: StringOrNull
-  }
+  opponent: IPlayer
   type: OpponentTypeEnum
 }
 
 export interface ITeamOpponent {
-  opponent: {
-    acronym: StringOrNull
-    id: number
-    image_url: StringOrNull
-    location: StringOrNull
-    modified_at: Date
-    name: string
-    slug: StringOrNull
-  }
+  opponent: ITeam
   type: OpponentTypeEnum
 }
 
@@ -110,7 +114,7 @@ export interface IMatchPlayerResult {
 export type TMatchResult = IMatchPlayerResult[] | IMatchTeamResult[]
 export type TMatchResultItem = IMatchPlayerResult | IMatchTeamResult
 
-interface ISerie {
+export interface ISerie {
   begin_at: DateOrNull
   end_at: DateOrNull
   full_name: string
@@ -125,7 +129,7 @@ interface ISerie {
   year: NumberOrNull
 }
 
-interface IStreamsList {
+interface IStream {
   embed_url: StringOrNull
   language: string
   main: boolean
@@ -133,7 +137,7 @@ interface IStreamsList {
   raw_url: string
 }
 
-interface ITournament {
+export interface ITournament {
   begin_at: DateOrNull
   detailed_stats: boolean
   end_at: DateOrNull
@@ -151,13 +155,13 @@ interface ITournament {
   winner_type: WinnerTypeEnum
 }
 
-interface IVideoGame {
+export interface IVideoGame {
   id: number
   name: string
   slug: string
 }
 
-interface IVideoGameTitle {
+export interface IVideoGameTitle {
   id: number
   name: string
   slug: string
@@ -215,7 +219,7 @@ export interface IMatch {
   serie_id: number
   slug: StringOrNull
   status: StatusEnum
-  streams_list: IStreamsList
+  streams_list: IStream[]
   tournament: ITournament
   tournament_id: number
 }
