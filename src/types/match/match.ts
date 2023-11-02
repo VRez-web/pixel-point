@@ -65,33 +65,37 @@ enum TierEnum {
   "unranked"
 }
 
+export interface IPlayer {
+  age: NumberOrNull
+  birthday: StringOrNull
+  first_name: StringOrNull
+  id: number
+  image_url: StringOrNull
+  last_name: StringOrNull
+  modified_at: Date
+  name: string
+  nationality: StringOrNull
+  role: StringOrNull
+  slug: StringOrNull
+}
+
+export interface ITeam {
+  acronym: StringOrNull
+  id: number
+  image_url: StringOrNull
+  location: StringOrNull
+  modified_at: Date
+  name: string
+  slug: StringOrNull
+}
+
 export interface IPlayerOpponent {
-  opponent: {
-    age: NumberOrNull
-    birthday: StringOrNull
-    first_name: StringOrNull
-    id: number
-    image_url: StringOrNull
-    last_name: StringOrNull
-    modified_at: Date
-    name: string
-    nationality: StringOrNull
-    role: StringOrNull
-    slug: StringOrNull
-  }
+  opponent: IPlayer
   type: OpponentTypeEnum
 }
 
 export interface ITeamOpponent {
-  opponent: {
-    acronym: StringOrNull
-    id: number
-    image_url: StringOrNull
-    location: StringOrNull
-    modified_at: Date
-    name: string
-    slug: StringOrNull
-  }
+  opponent: ITeam
   type: OpponentTypeEnum
 }
 
@@ -125,7 +129,7 @@ export interface ISerie {
   year: NumberOrNull
 }
 
-interface IStreamsList {
+interface IStream {
   embed_url: StringOrNull
   language: string
   main: boolean
@@ -215,7 +219,7 @@ export interface IMatch {
   serie_id: number
   slug: StringOrNull
   status: StatusEnum
-  streams_list: IStreamsList
+  streams_list: IStream[]
   tournament: ITournament
   tournament_id: number
 }

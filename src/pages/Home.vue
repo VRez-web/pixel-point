@@ -4,6 +4,7 @@ import HomeNewsSection from "@/components/home/HomeNewsSection.vue";
 import {Ref, ref} from "vue";
 import {useFetch} from "@/composables/app/useFetch";
 import {TMatchList} from "@/types/match/match";
+import {INews} from "@/types/news/news";
 
 const matches: Ref = ref({
   data: [],
@@ -41,7 +42,7 @@ const news: Ref = ref({
 })
 const getNews = () => {
   const {isError, isLoading, data} =
-      useFetch('incidents?per_page=20&type=[league,serie,team,tournament,player]')
+      useFetch<INews[]>('incidents?per_page=20&type=[league,serie,team,tournament,player]')
   news.value.data = data
   news.value.isError = isError
   news.value.isLoading = isLoading
@@ -52,6 +53,6 @@ getNews()
 <template>
   <div class="d-flex">
     <HomeMatchesSection :matches="matches" @change-tab="getMatches" />
-    <HomeNewsSection />
+    <HomeNewsSection :news="news" />
   </div>
 </template>
