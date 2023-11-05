@@ -2,32 +2,32 @@
 import MatchIcons from "@/components/MatchIcons.vue";
 import CardMatchesInfoOpponents from "@/components/home/HomeMatchesCardInfoOpponents.vue";
 import {computed} from "vue";
-import {IMatch, MATCH_TYPE} from "@/types/match";
+import {IMatch, GAME_MATCH_TYPE} from "@/types/match";
 import {formatDate} from "@/utils/common";
 
 interface IProps {
-  model: IMatch
+  match: IMatch
 }
 
 const props = defineProps<IProps>()
 
-const date = computed<string>(() => props.model.begin_at
-    ? formatDate(props.model.begin_at, {hour: "numeric", minute: "numeric",})
+const matchDate = computed<string>(() => props.match.begin_at
+    ? formatDate(props.match.begin_at, {hour: "numeric", minute: "numeric",})
     : '')
-const matchType = computed(() => MATCH_TYPE[props.model.match_type])
+const matchType = computed(() => GAME_MATCH_TYPE[props.match.match_type])
 </script>
 
 <template>
   <v-row class="match w-100 text-white rounded pa-1 mr-0 ml-0 mb-1 mt-0">
     <v-col>
       <v-row align-content="start" justify="center" class="text-subtitle-2">
-        <div class="videogame-logo  mr-auto" :title="model.videogame.name">
-          <MatchIcons :id="model.videogame.id" />
+        <div class="videogame-logo  mr-auto" :title="match.videogame.name">
+          <MatchIcons :id="match.videogame.id" />
         </div>
-        <p>{{ matchType }} {{ model.number_of_games }}</p>
-        <p class="match-date ml-auto">{{ date }}</p>
+        <p>{{ matchType }} {{ match.number_of_games }}</p>
+        <p class="match-date ml-auto">{{ matchDate }}</p>
       </v-row>
-      <CardMatchesInfoOpponents :opponents="model.opponents" :score="model.results" />
+      <CardMatchesInfoOpponents :opponents="match.opponents" :score="match.results" />
     </v-col>
   </v-row>
 </template>

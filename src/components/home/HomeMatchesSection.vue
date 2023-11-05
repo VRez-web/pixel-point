@@ -55,7 +55,7 @@ const changeActiveTab = (tabName: string) => {
       </v-row>
       <v-skeleton-loader v-if="matches.isLoading" :elevation="2" type="paragraph" />
       <p v-else-if="!formatMatchesData.length" class="text-center">No current {{ activeTab }} matches</p>
-      <CardMatchesInfo v-else v-for="(match, i) in formatMatchesData" :key="i" :model="match" />
+      <CardMatchesInfo v-else v-for="(match, i) in formatMatchesData" :key="i" :match="match" />
     </v-col>
   </v-sheet>
 </template>

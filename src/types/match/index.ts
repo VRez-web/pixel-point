@@ -19,7 +19,7 @@ export interface IMapPick {
   videogame_versions: string[]
 }
 
-export const MATCH_TYPE = {
+export const GAME_MATCH_TYPE = {
   "all_games_played": 'all games played',
   "best_of": 'best of',
   "custom": 'custom',
@@ -28,7 +28,7 @@ export const MATCH_TYPE = {
   "red_bull_home_ground": 'red bull home ground'
 } as const
 
-export type TMatchType = keyof typeof MATCH_TYPE
+export type TGameMatchType = keyof typeof GAME_MATCH_TYPE
 
 enum OpponentTypeEnum {
   "Player",
@@ -121,7 +121,7 @@ export interface IMatch {
   forfeit: boolean
   game_advantage: NumberOrNull
   number_of_games: number
-  match_type: TMatchType
+  match_type: TGameMatchType
   results: TMatchResult
   videogame: IVideoGame
   videogame_title: IVideoGameTitle
