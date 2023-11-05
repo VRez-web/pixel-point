@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import MatchIcons from "@/components/MatchIcons.vue";
-import CardMatchesInfoOpponents from "@/components/CardMatchesInfoOpponents.vue";
+import CardMatchesInfoOpponents from "@/components/home/HomeMatchesCardInfoOpponents.vue";
 import {computed} from "vue";
-import {IMatch, MATCH_TYPE} from "@/types/match/match";
+import {IMatch, MATCH_TYPE} from "@/types/match";
 import {formatDate} from "@/utils/common";
 
 interface IProps {

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import NoImageIcon from "@/components/ui/icons/NoImageIcon.vue";
-import {TMatchResult, TMatchResultItem, TOpponent} from "@/types/match/match";
+import {TMatchResult, TOpponent} from "@/types/match";
 import {computed} from "vue";
 
 interface IProp {
@@ -11,10 +11,10 @@ interface IProp {
 const props = defineProps<IProp>()
 
 // TODO: fix bugs with ts
-const formatOpponent = computed(() => props.opponents.map(opponent => {
+const formatOpponent = computed(() => props.opponents.map(({opponent}) => {
   return {
-    ...opponent.opponent,
-    score: props.score.find((score: TMatchResultItem) => (score.team_id || score.player_id) === opponent.opponent.id).score
+    ...opponent,
+    score: props.score.find((score) => (score.team_id || score.player_id) === opponent.id).score
   }
 }))
 const firstOpponent = computed(() => formatOpponent.value.at(0))
@@ -23,20 +23,20 @@ const secondOpponent = computed(() => formatOpponent.value.at(1))
 
 <template>
   <v-row align="center" justify="center">
-    <div class="team d-flex align-center flex-column mr-auto" :title="firstOpponent.name">
-      <img v-if="firstOpponent.image_url" :src="firstOpponent.image_url" alt="" class="team-logo">
+    <div class="team d-flex align-center flex-column mr-auto" :title="firstOpponent?.name">
+      <img v-if="firstOpponent?.image_url" :src="firstOpponent?.image_url" alt="" class="team-logo">
       <NoImageIcon v-else />
-      <p class="team-name">{{ firstOpponent.name }}</p>
+      <p class="team-name">{{ firstOpponent?.name }}</p>
     </div>
     <div>
-      <span>{{ firstOpponent.score }}</span>
+      <span>{{ firstOpponent?.score }}</span>
       <span>:</span>
-      <span>{{ secondOpponent.score }}</span>
+      <span>{{ secondOpponent?.score }}</span>
     </div>
-    <div class="team d-flex align-center flex-column ml-auto" :title="secondOpponent.name">
-      <img v-if="secondOpponent.image_url" :src="secondOpponent.image_url" alt="" class="team-logo">
+    <div class="team d-flex align-center flex-column ml-auto" :title="secondOpponent?.name">
+      <img v-if="secondOpponent?.image_url" :src="secondOpponent?.image_url" alt="" class="team-logo">
       <NoImageIcon v-else />
-      <p class="team-name">{{ secondOpponent.name }}</p>
+      <p class="team-name">{{ secondOpponent?.name }}</p>
     </div>
   </v-row>
 </template>

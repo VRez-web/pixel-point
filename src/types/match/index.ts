@@ -1,20 +1,13 @@
 import {BooleanOrNull, DateOrNull, NumberOrNull, StringOrNull} from "@/types/base/BaseTypes";
-import {IPastMatch} from "@/types/match/pastMatch";
-import {ILiveMatch} from "@/types/match/liveMatch";
-import {IUpcomingMatch} from "@/types/match/upcomingMatch";
+import {ILeague} from "@/types/league";
+import {IPlayer} from "@/types/player";
+import {ITeam} from "@/types/team";
+import {ITournament} from "@/types/tournament";
+import {ISerie} from "@/types/serie";
 
 interface ILive {
   opens_at: StringOrNull
   supported: boolean
-  url: StringOrNull
-}
-
-export interface ILeague {
-  id: number
-  image_url: StringOrNull
-  modified_at: Date
-  name: string
-  slug: string
   url: StringOrNull
 }
 
@@ -55,40 +48,6 @@ enum StatusEnum {
   "running"
 }
 
-// Ranking 'S' > 'A' > 'B' > 'C' > 'D' > 'Unranked'
-enum TierEnum {
-  "a",
-  "b",
-  "c",
-  "d",
-  "s",
-  "unranked"
-}
-
-export interface IPlayer {
-  age: NumberOrNull
-  birthday: StringOrNull
-  first_name: StringOrNull
-  id: number
-  image_url: StringOrNull
-  last_name: StringOrNull
-  modified_at: Date
-  name: string
-  nationality: StringOrNull
-  role: StringOrNull
-  slug: StringOrNull
-}
-
-export interface ITeam {
-  acronym: StringOrNull
-  id: number
-  image_url: StringOrNull
-  location: StringOrNull
-  modified_at: Date
-  name: string
-  slug: StringOrNull
-}
-
 export interface IPlayerOpponent {
   opponent: IPlayer
   type: OpponentTypeEnum
@@ -99,7 +58,7 @@ export interface ITeamOpponent {
   type: OpponentTypeEnum
 }
 
-export type TOpponent = IPlayerOpponent[] | ITeamOpponent[]
+export type TOpponent = (WinnerTypeEnum.Player & IPlayerOpponent[]) | ITeamOpponent[]
 
 export interface IMatchTeamResult {
   team_id: number
@@ -114,45 +73,12 @@ export interface IMatchPlayerResult {
 export type TMatchResult = IMatchPlayerResult[] | IMatchTeamResult[]
 export type TMatchResultItem = IMatchPlayerResult | IMatchTeamResult
 
-export interface ISerie {
-  begin_at: DateOrNull
-  end_at: DateOrNull
-  full_name: string
-  id: number
-  league_id: number
-  modified_at: Date
-  name: StringOrNull
-  season: StringOrNull
-  slug: string
-  winner_id: number
-  winner_type: WinnerTypeEnum
-  year: NumberOrNull
-}
-
 interface IStream {
   embed_url: StringOrNull
   language: string
   main: boolean
   official: boolean
   raw_url: string
-}
-
-export interface ITournament {
-  begin_at: DateOrNull
-  detailed_stats: boolean
-  end_at: DateOrNull
-  has_bracket: boolean
-  id: number
-  league_id: number
-  live_supported: boolean
-  modified_at: Date
-  name: string
-  prizepool: StringOrNull
-  serie_id: number
-  slug: string
-  tier: TierEnum
-  winner_id: number
-  winner_type: WinnerTypeEnum
 }
 
 export interface IVideoGame {
@@ -173,7 +99,6 @@ interface IVideoGameVersion {
   name: string
 }
 
-// think about opponent type
 interface IGame {
   begin_at: DateOrNull
   complete: boolean
@@ -223,6 +148,3 @@ export interface IMatch {
   tournament: ITournament
   tournament_id: number
 }
-
-export type TMatchList = IPastMatch[] | ILiveMatch[] | IUpcomingMatch []
-export type TMatchListItem = IPastMatch | ILiveMatch | IUpcomingMatch

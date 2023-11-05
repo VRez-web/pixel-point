@@ -1,4 +1,4 @@
-import {ILeague, IMatch, IPlayer, ISerie, ITeam, ITournament, IVideoGame, IVideoGameTitle} from "@/types/match/match";
+import {ILeague, IMatch, IPlayer, ISerie, ITeam, ITournament, IVideoGame, IVideoGameTitle} from "@/types/match";
 import {StringOrNull} from "@/types/base/BaseTypes";
 
 type TTVideogame = IVideoGame & { current_version?: StringOrNull }

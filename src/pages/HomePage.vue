@@ -3,8 +3,8 @@ import HomeMatchesSection from "@/components/home/HomeMatchesSection.vue";
 import HomeNewsSection from "@/components/home/HomeNewsSection.vue";
 import {Ref, ref} from "vue";
 import {useFetch} from "@/composables/app/useFetch";
-import {TMatchList} from "@/types/match/match";
-import {INews} from "@/types/news/news";
+import {INews} from "@/types/news";
+import {TMatchList} from "@/types/match/matchTypes";
 
 const matches: Ref = ref({
   data: [],

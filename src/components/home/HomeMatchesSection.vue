@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import CardMatchesInfo from "@/components/CardMatchesInfo.vue";
+import CardMatchesInfo from "@/components/home/HomeMatchesCardInfo.vue";
 import {computed, Ref, ref} from "vue";
 import {filterGames} from "@/utils/common";
-import {TMatchList} from "@/types/match/match";
+import {TMatchList} from "@/types/match/matchTypes";
 
 interface IMatchesProp {
   data: TMatchList
