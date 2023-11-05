@@ -11,14 +11,14 @@ interface IProp {
 const props = defineProps<IProp>()
 
 // TODO: fix bugs with ts
-const formatOpponentWithScore = computed(() => props.opponents.map(({opponent}) => {
+const opponentWithScore = computed(() => props.opponents.map(({opponent}) => {
   return {
     ...opponent,
     score: props.score.find((score) => (score.team_id || score.player_id) === opponent.id).score
   }
 }))
-const firstOpponent = computed(() => formatOpponentWithScore.value.at(0))
-const secondOpponent = computed(() => formatOpponentWithScore.value.at(1))
+const firstOpponent = computed(() => opponentWithScore.value.at(0))
+const secondOpponent = computed(() => opponentWithScore.value.at(1))
 </script>
 
 <template>

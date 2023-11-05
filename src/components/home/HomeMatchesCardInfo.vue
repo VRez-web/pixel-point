@@ -2,7 +2,7 @@
 import MatchIcons from "@/components/MatchIcons.vue";
 import CardMatchesInfoOpponents from "@/components/home/HomeMatchesCardInfoOpponents.vue";
 import {computed} from "vue";
-import {IMatch, GAME_MATCH_TYPE} from "@/types/match";
+import {IMatch, MATCH_GAME_TYPE} from "@/types/match";
 import {formatDate} from "@/utils/common";
 
 interface IProps {
@@ -14,7 +14,7 @@ const props = defineProps<IProps>()
 const matchDate = computed<string>(() => props.match.begin_at
     ? formatDate(props.match.begin_at, {hour: "numeric", minute: "numeric",})
     : '')
-const matchType = computed(() => GAME_MATCH_TYPE[props.match.match_type])
+const matchType = computed(() => MATCH_GAME_TYPE[props.match.match_type])
 </script>
 
 <template>
