@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import HomeMatchesSection from "@/components/home/HomeMatchesSection.vue";
 import HomeNewsSection from "@/components/home/HomeNewsSection.vue";
-import {Ref, ref} from "vue";
+import {onBeforeMount, Ref, ref} from "vue";
 import {useFetch} from "@/composables/app/useFetch";
-import {TMatchList} from "@/types/match/match";
-import {INews} from "@/types/news/news";
+import {INews} from "@/types/news";
+import {TMatchList} from "@/types/match/matchTypes";
 
 const matches: Ref = ref({
   data: [],
@@ -12,7 +12,7 @@ const matches: Ref = ref({
   isError: false
 })
 
-const getMatches = (tabName: string = 'live') => {
+const fetchMatches = (tabName: string = 'live') => {
   interface IUrlsForDate {
     [key: string]: string
   }
@@ -32,7 +32,6 @@ const getMatches = (tabName: string = 'live') => {
   matches.value.isError = isError
   matches.value.isLoading = isLoading
 }
-getMatches()
 
 
 const news: Ref = ref({
@@ -40,19 +39,23 @@ const news: Ref = ref({
   isLoading: true,
   isError: false
 })
-const getNews = () => {
+const fetchNews = () => {
   const {isError, isLoading, data} =
       useFetch<INews[]>('incidents?per_page=20&type=[league,serie,team,tournament,player]')
   news.value.data = data
   news.value.isError = isError
   news.value.isLoading = isLoading
 }
-getNews()
+
+onBeforeMount(() => {
+  fetchMatches()
+  fetchNews()
+})
 </script>
 
 <template>
   <div class="d-flex">
-    <HomeMatchesSection :matches="matches" @change-tab="getMatches" />
+    <HomeMatchesSection :matches="matches" @change-tab="fetchMatches" />
     <HomeNewsSection :news="news" />
   </div>
 </template>

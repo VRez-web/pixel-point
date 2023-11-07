@@ -1,4 +1,4 @@
-import {TMatchListItem} from "@/types/match/match";
+import {TMatchListItem} from "@/types/match/matchTypes";
 
 export const formatDate = (date: string | Date, options = {}): string => {
   const formatDate = new Date(date)

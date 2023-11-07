@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import HomeNewsCard from "@/components/home/HomeNewsCard.vue";
-import {INews} from "@/types/news/news";
+import {INews} from "@/types/news";
 
 interface INewsProp {
   data: INews[]

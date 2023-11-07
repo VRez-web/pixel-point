@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import MatchIcons from "@/components/MatchIcons.vue";
-import {INews} from "@/types/news/news";
+import {INews} from "@/types/news";
 import {computed} from "vue";
 import {formatDate} from "@/utils/common";
 

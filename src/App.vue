@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import DefaultLayout from "@/layouts/Default.vue";
+import DefaultLayout from "@/layouts/DefaultLayout.vue";
 import {onBeforeMount} from "vue";
 import {useGenresStore} from "@/store/genres";
 //
