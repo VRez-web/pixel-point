@@ -19,16 +19,18 @@ const matchType = computed(() => MATCH_GAME_TYPE[props.match.match_type])
 
 <template>
   <v-row class="match w-100 text-white rounded pa-1 mr-0 ml-0 mb-1 mt-0">
-    <v-col>
-      <v-row align-content="start" justify="center" class="text-subtitle-2">
-        <div class="videogame-logo  mr-auto" :title="match.videogame.name">
-          <MatchIcons :id="match.videogame.id" />
-        </div>
-        <p>{{ matchType }} {{ match.number_of_games }}</p>
-        <p class="match-date ml-auto">{{ matchDate }}</p>
-      </v-row>
-      <CardMatchesInfoOpponents :opponents="match.opponents" :score="match.results" />
-    </v-col>
+    <router-link :to="{name:'match-details', query:{id:match.id}}" class="w-100">
+      <v-col>
+        <v-row align-content="start" justify="center" class="text-subtitle-2">
+          <div class="videogame-logo  mr-auto" :title="match.videogame.name">
+            <MatchIcons :id="match.videogame.id" />
+          </div>
+          <p>{{ matchType }} {{ match.number_of_games }}</p>
+          <p class="match-date ml-auto">{{ matchDate }}</p>
+        </v-row>
+        <CardMatchesInfoOpponents :opponents="match.opponents" :score="match.results" />
+      </v-col>
+    </router-link>
   </v-row>
 </template>
 

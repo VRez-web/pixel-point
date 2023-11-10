@@ -40,13 +40,15 @@ export enum WinnerTypeEnum {
   "Team" = 'team'
 }
 
-enum StatusEnum {
-  "canceled",
-  "finished",
-  "not_started",
-  "postponed",
-  "running"
-}
+const MATCH_STATUS = {
+  "canceled": '',
+  "finished": '',
+  "not_started": '',
+  "postponed": '',
+  "running": ''
+} as const
+
+export type TMatchStatus = keyof typeof MATCH_STATUS
 
 export interface IPlayerOpponent {
   opponent: IPlayer
@@ -108,7 +110,7 @@ interface IGame {
   forfeit: boolean
   id: number
   match_id: number
-  status: StatusEnum
+  status: TMatchStatus
   winner: { id: number, type: WinnerTypeEnum }
   winner_type: WinnerTypeEnum
 }
@@ -143,7 +145,7 @@ export interface IMatch {
   serie: ISerie
   serie_id: number
   slug: StringOrNull
-  status: StatusEnum
+  status: TMatchStatus
   streams_list: IStream[]
   tournament: ITournament
   tournament_id: number

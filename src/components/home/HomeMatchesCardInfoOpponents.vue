@@ -14,7 +14,7 @@ const props = defineProps<IProp>()
 const opponentWithScore = computed(() => props.opponents.map(({opponent}) => {
   return {
     ...opponent,
-    score: props.score.find((score) => (score.team_id || score.player_id) === opponent.id).score
+    score: props.score.find((score) => (score.team_id || score.player_id) === opponent.id)?.score
   }
 }))
 const firstOpponent = computed(() => opponentWithScore.value.at(0))
