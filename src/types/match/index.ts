@@ -1,7 +1,7 @@
 import {BooleanOrNull, DateOrNull, NumberOrNull, StringOrNull} from "@/types/base/BaseTypes";
 import {ILeague} from "@/types/league";
-import {IPlayer} from "@/types/player";
-import {ITeam} from "@/types/team";
+import {IPlayer, IPlayerOpponentsMatch} from "@/types/player";
+import {ITeam, ITeamWithPlayers} from "@/types/team";
 import {ITournament} from "@/types/tournament";
 import {ISerie} from "@/types/serie";
 
@@ -35,10 +35,12 @@ enum OpponentTypeEnum {
   "Team"
 }
 
-export enum WinnerTypeEnum {
-  "Player" = 'player',
-  "Team" = 'team'
+const MATCH_TYPE_OPPONENT = {
+  "Player": 'player',
+  "Team": 'team'
 }
+
+export type TMatchOpponent = keyof typeof MATCH_TYPE_OPPONENT
 
 const MATCH_STATUS = {
   "canceled": '',
@@ -60,7 +62,7 @@ export interface ITeamOpponent {
   type: OpponentTypeEnum
 }
 
-export type TOpponent = (WinnerTypeEnum.Player & IPlayerOpponent[]) | ITeamOpponent[]
+export type TOpponent = IPlayerOpponent[] | ITeamOpponent[]
 
 export interface IMatchTeamResult {
   team_id: number
@@ -111,8 +113,8 @@ interface IGame {
   id: number
   match_id: number
   status: TMatchStatus
-  winner: { id: number, type: WinnerTypeEnum }
-  winner_type: WinnerTypeEnum
+  winner: { id: number, type: TMatchOpponent }
+  winner_type: TMatchOpponent
 }
 
 export interface IMatch {
@@ -129,7 +131,7 @@ export interface IMatch {
   videogame_title: IVideoGameTitle
   videogame_version: IVideoGameVersion
   opponents: TOpponent
-  winner_type: WinnerTypeEnum
+  winner_type: TMatchOpponent
   winner: IPlayerOpponent | ITeamOpponent
   winner_id: number
   games: IGame[]
@@ -149,4 +151,11 @@ export interface IMatch {
   streams_list: IStream[]
   tournament: ITournament
   tournament_id: number
+}
+
+export type TMatchOpponents = ITeamWithPlayers[] | IPlayerOpponentsMatch[]
+
+export interface IMatchOpponents {
+  opponent_type: TMatchOpponent
+  opponents: TMatchOpponents
 }

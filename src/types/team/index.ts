@@ -1,4 +1,6 @@
 import {StringOrNull} from "@/types/base/BaseTypes";
+import {IPlayer} from "@/types/player";
+import {IVideoGame} from "@/types/match";
 
 export interface ITeam {
   acronym: StringOrNull
@@ -8,4 +10,9 @@ export interface ITeam {
   modified_at: Date
   name: string
   slug: StringOrNull
+}
+
+export interface ITeamWithPlayers extends ITeam {
+  players: IPlayer []
+  current_videogame: IVideoGame
 }

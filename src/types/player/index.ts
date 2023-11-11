@@ -1,4 +1,5 @@
 import {NumberOrNull, StringOrNull} from "@/types/base/BaseTypes";
+import {IVideoGame} from "@/types/match";
 
 export interface IPlayer {
   age: NumberOrNull
@@ -12,4 +13,8 @@ export interface IPlayer {
   nationality: StringOrNull
   role: StringOrNull
   slug: StringOrNull
+}
+
+export interface IPlayerOpponentsMatch extends IPlayer {
+  current_videogame: IVideoGame
 }
