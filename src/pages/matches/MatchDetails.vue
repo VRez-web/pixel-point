@@ -24,7 +24,7 @@ onBeforeMount(() => window.scrollTo(0, 0))
 <template>
   <AppLoader v-if="isLoading" />
   <v-row v-else-if="match" class="ma-0">
-    <v-col class="ml-0" style="max-width: 15%">
+    <v-col class="ml-0 position-absolute" style="max-width: 15%">
       <v-row align="center">
         <MatchIcons :id="match.videogame.id" class="mr-2" />
         {{ match.videogame.name }}
