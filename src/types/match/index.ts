@@ -77,7 +77,7 @@ export interface IMatchPlayerResult {
 export type TMatchResult = IMatchPlayerResult[] | IMatchTeamResult[]
 export type TMatchResultItem = IMatchPlayerResult | IMatchTeamResult
 
-interface IStream {
+export interface IStream {
   embed_url: StringOrNull
   language: string
   main: boolean

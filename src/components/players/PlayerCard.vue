@@ -16,8 +16,9 @@ defineProps<IProp>()
         :src="player.image_url"
         width="150px"
         height="150px"
+        cover
     />
-    <NoPlayerAvatar v-else :width="150" :height="150"/>
+    <NoPlayerAvatar v-else :width="150" :height="150" />
     <v-card-title class="text-center text-body-1">
       {{ player.name }}
     </v-card-title>

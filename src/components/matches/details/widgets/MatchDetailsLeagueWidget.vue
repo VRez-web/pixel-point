@@ -12,8 +12,20 @@ defineProps<IProp>()
   <v-sheet class="pa-2" elevation="2" rounded>
     <h2 class="text-center"> League </h2>
     <v-row class="ma-0" justify="center" align="center">
-      <img v-if="league.image_url" :src="league.image_url" alt="" class="w-25">
+      <v-img
+          v-if="league.image_url"
+          :src="league.image_url"
+          alt=""
+          width="75px"
+          height="75px"
+      />
       <p class="ml-2">{{ league.name }}</p>
     </v-row>
   </v-sheet>
 </template>
+
+<style lang="scss" scoped>
+.v-img {
+  max-width : 25%;
+}
+</style>

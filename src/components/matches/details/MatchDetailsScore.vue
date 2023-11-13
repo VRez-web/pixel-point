@@ -37,7 +37,15 @@ const matchType = computed(() => MATCH_GAME_TYPE[props.match.match_type])
     <v-sheet class="pa-2">
       <v-row justify="center" align="end">
         <v-col v-if="firstOpponent" class="text-center">
-          <img v-if="firstOpponent.image_url" class="team-img" :src="firstOpponent.image_url" alt="">
+          <v-img
+              v-if="firstOpponent.image_url"
+              :src="firstOpponent.image_url"
+              alt=""
+              width="100"
+              height="100"
+              class="ml-auto mr-auto"
+              cover
+          />
           <NoImageIcon v-else />
           <p>{{ firstOpponent.name }}</p>
         </v-col>

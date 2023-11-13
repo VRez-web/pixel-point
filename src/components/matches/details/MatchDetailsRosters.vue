@@ -14,6 +14,6 @@ defineProps<IProp>()
   <v-col class="mt-3">
     <h3>Rosters:</h3>
     <MatchDetailsRostersTeams v-if="rosters.opponent_type === 'Team'" :teams="rosters.opponents" />
-    <MatchDetailsRostersPlayers v-else :playes="rosters.opponents" />
+    <MatchDetailsRostersPlayers v-else :players="rosters.opponents" />
   </v-col>
 </template>
