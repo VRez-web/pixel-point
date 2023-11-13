@@ -1,8 +1,13 @@
 a {
   display         : block;
   text-decoration : none;
+  color           : inherit;
 
   &:visited {
     color : inherit;
   }
+}
+
+.v-row {
+  margin : 0;
 }
