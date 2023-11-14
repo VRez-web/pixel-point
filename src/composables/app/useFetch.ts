@@ -7,6 +7,7 @@ interface IFetchResponse<T> {
   isLoading: Ref<boolean>
   isError: Ref<boolean>
   data: Ref<null | T>
+  dataTotal: Ref<number>
 }
 
 // TODO: need a refactoring
@@ -14,6 +15,7 @@ export function useFetch<T>(url: string): IFetchResponse<T> {
   const isLoading: Ref<boolean> = ref(false)
   const isError: Ref<boolean> = ref(false)
   const data: Ref<null | T> = ref(null)
+  const dataTotal: Ref<number> = ref(0)
 
   isLoading.value = true
   const res = fetch(`${baseUrl}${url}`, {
@@ -23,10 +25,13 @@ export function useFetch<T>(url: string): IFetchResponse<T> {
       authorization: `Bearer ${token}`
     }
   })
-    .then((response:Response) => response.json())
+    .then((response: Response) => {
+      dataTotal.value = Number(response.headers.get('X-Total'))
+      return response.json()
+    })
     .then((responseData: T) => data.value = responseData)
     .catch(() => isError.value = true)
     .finally(() => isLoading.value = false)
 
-  return {isLoading, isError, data}
+  return {isLoading, isError, data, dataTotal}
 }
