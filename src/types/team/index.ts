@@ -1,6 +1,6 @@
 import {StringOrNull} from "@/types/base/BaseTypes";
 import {IPlayer} from "@/types/player";
-import {IVideoGame} from "@/types/match";
+import {IVideoGame} from "@/types/videogame";
 
 export interface ITeam {
   acronym: StringOrNull

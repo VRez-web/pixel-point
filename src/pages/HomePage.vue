@@ -5,6 +5,7 @@ import {onBeforeMount, Ref, ref} from "vue";
 import {useFetch} from "@/composables/app/useFetch";
 import {INews} from "@/types/news";
 import {TMatchList} from "@/types/match/matchTypes";
+import {ALLOWED_VIDEO_GAMES_IDS} from "@/constants/videoGamesIds";
 
 const matches: Ref = ref({
   data: [],
@@ -18,9 +19,9 @@ const fetchMatches = (tabName: string = 'live') => {
   }
 
   const urlsForDate: IUrlsForDate = {
-    'past': 'matches/past?per_page=20',
-    'live': 'matches/running?sort=-begin_at&per_page=20',
-    'upcoming': 'matches/upcoming?per_page=20',
+    'past': `matches/past?per_page=20&filter[videogame]=${ALLOWED_VIDEO_GAMES_IDS}`,
+    'live': `matches/running?sort=-begin_at&per_page=20&filter[videogame]=${ALLOWED_VIDEO_GAMES_IDS}`,
+    'upcoming': `matches/upcoming?per_page=20&filter[videogame]=${ALLOWED_VIDEO_GAMES_IDS}`,
   }
 
   const {
@@ -41,7 +42,9 @@ const news: Ref = ref({
 })
 const fetchNews = () => {
   const {isError, isLoading, data} =
-      useFetch<INews[]>('incidents?per_page=20&type=[league,serie,team,tournament,player]')
+      useFetch<INews[]>(
+          `incidents?per_page=20&type=[league,serie,team,tournament,player]&videogame=${ALLOWED_VIDEO_GAMES_IDS}`
+      )
   news.value.data = data
   news.value.isError = isError
   news.value.isLoading = isLoading

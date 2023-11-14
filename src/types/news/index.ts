@@ -1,5 +1,11 @@
-import {ILeague, IMatch, IPlayer, ISerie, ITeam, ITournament, IVideoGame, IVideoGameTitle} from "@/types/match";
+import {ILeague} from "@/types/league"
 import {StringOrNull} from "@/types/base/BaseTypes";
+import {IVideoGame, IVideoGameTitle} from "@/types/videogame";
+import {IPlayer} from "@/types/player";
+import {ITeam} from "@/types/team";
+import {ISerie} from "@/types/serie";
+import {ITournament} from "@/types/tournament";
+import {IMatch} from "@/types/match";
 
 type TTVideogame = IVideoGame & { current_version?: StringOrNull }
 type TRoster = { players: IPlayer[], team: ITeam }
@@ -9,7 +15,7 @@ interface ILeagueNews extends ILeague {
   series: ISerie[]
 }
 
-interface ISeriaNews extends ISerie {
+interface ISerieNews extends ISerie {
   league: ILeague
   tournaments: ITournament[]
   videogame: IVideoGame
@@ -36,14 +42,14 @@ interface ITeamNews extends ITeam {
   players: IPlayer []
 }
 
-export type TChangeType = 'creation' | 'deletion' | 'update'
-export type TNewsType = 'league' | 'player' | 'serie' | 'team' | 'tournament'
-export type TObjectNews = ILeagueNews | ISeriaNews | ITournamentNews | IPlayerNews | ITeamNews
+export type NewsTypeChange = 'creation' | 'deletion' | 'update'
+export type NewsType = 'league' | 'player' | 'serie' | 'team' | 'tournament'
+export type NewsObjectType = ILeagueNews | ISerieNews | ITournamentNews | IPlayerNews | ITeamNews
 
 export interface INews {
-  change_type: TChangeType
+  change_type: NewsTypeChange
   id: number
   modified_at: string
-  object: TObjectNews
-  type: TNewsType
+  object: NewsObjectType
+  type: NewsType
 }

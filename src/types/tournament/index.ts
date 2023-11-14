@@ -1,5 +1,5 @@
 import {DateOrNull, StringOrNull} from "@/types/base/BaseTypes";
-import {WinnerTypeEnum} from "@/types/match";
+import {OpponentType} from "@/types/match";
 
 // Ranking 'S' > 'A' > 'B' > 'C' > 'D' > 'Unranked'
 enum TierEnum {
@@ -26,5 +26,5 @@ export interface ITournament {
   slug: string
   tier: TierEnum
   winner_id: number
-  winner_type: WinnerTypeEnum
+  winner_type: OpponentType
 }

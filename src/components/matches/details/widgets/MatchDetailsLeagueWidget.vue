@@ -11,11 +11,11 @@ defineProps<IProp>()
 <template>
   <v-sheet class="pa-2" elevation="2" rounded>
     <h2 class="text-center"> League </h2>
-    <v-row class="ma-0" justify="center" align="center">
+    <v-row justify="center" align="center">
       <v-img
           v-if="league.image_url"
           :src="league.image_url"
-          alt=""
+          alt="league icon"
           width="75px"
           height="75px"
       />

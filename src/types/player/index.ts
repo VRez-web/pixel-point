@@ -1,5 +1,5 @@
 import {NumberOrNull, StringOrNull} from "@/types/base/BaseTypes";
-import {IVideoGame} from "@/types/match";
+import {IVideoGame} from "@/types/videogame";
 
 export interface IPlayer {
   age: NumberOrNull

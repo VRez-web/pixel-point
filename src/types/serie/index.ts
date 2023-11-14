@@ -1,5 +1,5 @@
 import {DateOrNull, NumberOrNull, StringOrNull} from "@/types/base/BaseTypes";
-import {WinnerTypeEnum} from "@/types/match";
+import {OpponentType} from "@/types/match";
 
 export interface ISerie {
   begin_at: DateOrNull
@@ -12,6 +12,6 @@ export interface ISerie {
   season: StringOrNull
   slug: string
   winner_id: number
-  winner_type: WinnerTypeEnum
+  winner_type: OpponentType
   year: NumberOrNull
 }
