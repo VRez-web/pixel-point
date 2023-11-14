@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import MatchIcons from "@/components/MatchIcons.vue";
+import GameTypeIcon from "@/components/GameTypeIcon.vue";
 import {INews} from "@/types/news";
 import {computed} from "vue";
 import {formatDate} from "@/utils/common";
@@ -32,9 +32,9 @@ const title = computed(() => props.newsItem.type === 'serie' ? props.newsItem.ob
     <v-card-item>
       <div>
         <div class="text-overline mb-1" />
-        <v-row justify="space-between" align="start" class="text-body-1 ma-0 mb-1">
-          <v-row align="start" class="ma-0">
-            <MatchIcons :id="videoGameId" />
+        <v-row justify="space-between" align="start" class="text-body-1 mb-1">
+          <v-row align="start">
+            <GameTypeIcon :id="videoGameId" />
             <p class="ml-2"> {{ newsItem.type }} </p>
           </v-row>
           <p> {{ newsItem.change_type }}</p>

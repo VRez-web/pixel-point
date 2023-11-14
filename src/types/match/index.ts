@@ -4,6 +4,7 @@ import {IPlayer, IPlayerOpponentsMatch} from "@/types/player";
 import {ITeam, ITeamWithPlayers} from "@/types/team";
 import {ITournament} from "@/types/tournament";
 import {ISerie} from "@/types/serie";
+import {IVideoGame, IVideoGameTitle, IVideoGameVersion} from "@/types/videogame";
 
 interface ILive {
   opens_at: StringOrNull
@@ -40,7 +41,7 @@ const MATCH_TYPE_OPPONENT = {
   "Team": 'team'
 }
 
-export type TMatchOpponent = keyof typeof MATCH_TYPE_OPPONENT
+export type OpponentType = keyof typeof MATCH_TYPE_OPPONENT
 
 const MATCH_STATUS = {
   "canceled": '',
@@ -62,7 +63,7 @@ export interface ITeamOpponent {
   type: OpponentTypeEnum
 }
 
-export type TOpponent = IPlayerOpponent[] | ITeamOpponent[]
+export type OpponentTypeList = IPlayerOpponent[] | ITeamOpponent[]
 
 export interface IMatchTeamResult {
   team_id: number
@@ -85,24 +86,6 @@ export interface IStream {
   raw_url: string
 }
 
-export interface IVideoGame {
-  id: number
-  name: string
-  slug: string
-}
-
-export interface IVideoGameTitle {
-  id: number
-  name: string
-  slug: string
-  videogame_id: number
-}
-
-interface IVideoGameVersion {
-  current: boolean
-  name: string
-}
-
 interface IGame {
   begin_at: DateOrNull
   complete: boolean
@@ -113,8 +96,8 @@ interface IGame {
   id: number
   match_id: number
   status: TMatchStatus
-  winner: { id: number, type: TMatchOpponent }
-  winner_type: TMatchOpponent
+  winner: { id: number, type: OpponentType }
+  winner_type: OpponentType
 }
 
 export interface IMatch {
@@ -130,8 +113,8 @@ export interface IMatch {
   videogame: IVideoGame
   videogame_title: IVideoGameTitle
   videogame_version: IVideoGameVersion
-  opponents: TOpponent
-  winner_type: TMatchOpponent
+  opponents: OpponentTypeList
+  winner_type: OpponentType
   winner: IPlayerOpponent | ITeamOpponent
   winner_id: number
   games: IGame[]
@@ -156,6 +139,6 @@ export interface IMatch {
 export type TMatchOpponents = ITeamWithPlayers[] | IPlayerOpponentsMatch[]
 
 export interface IMatchOpponents {
-  opponent_type: TMatchOpponent
+  opponent_type: OpponentType
   opponents: TMatchOpponents
 }

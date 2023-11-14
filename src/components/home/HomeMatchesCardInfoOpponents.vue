@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import NoImageIcon from "@/components/ui/icons/NoImageIcon.vue";
-import {TMatchResult, TOpponent} from "@/types/match";
+import {TMatchResult, OpponentTypeList} from "@/types/match";
 import {computed} from "vue";
 
 interface IProp {
-  opponents: TOpponent
+  opponents: OpponentTypeList
   score: TMatchResult
 }
 
@@ -24,7 +24,7 @@ const secondOpponent = computed(() => opponentWithScore.value.at(1))
 <template>
   <v-row align="center" justify="center">
     <div class="team d-flex align-center flex-column mr-auto" :title="firstOpponent?.name">
-      <img v-if="firstOpponent?.image_url" :src="firstOpponent?.image_url" alt="" class="team-logo">
+      <img v-if="firstOpponent?.image_url" :src="firstOpponent?.image_url" alt="team or player logo" class="team-logo">
       <NoImageIcon v-else />
       <p class="team-name">{{ firstOpponent?.name }}</p>
     </div>
@@ -34,7 +34,7 @@ const secondOpponent = computed(() => opponentWithScore.value.at(1))
       <span>{{ secondOpponent?.score }}</span>
     </div>
     <div class="team d-flex align-center flex-column ml-auto" :title="secondOpponent?.name">
-      <img v-if="secondOpponent?.image_url" :src="secondOpponent?.image_url" alt="" class="team-logo">
+      <img v-if="secondOpponent?.image_url" :src="secondOpponent?.image_url" alt="team or player logo" class="team-logo">
       <NoImageIcon v-else />
       <p class="team-name">{{ secondOpponent?.name }}</p>
     </div>

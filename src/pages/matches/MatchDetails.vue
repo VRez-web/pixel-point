@@ -5,7 +5,7 @@ import MatchDetailsTournamentWidget from "@/components/matches/details/widgets/M
 import MatchDetailsLeagueWidget from "@/components/matches/details/widgets/MatchDetailsLeagueWidget.vue";
 import MatchDetailsRosters from "@/components/matches/details/MatchDetailsRosters.vue";
 import MatchDetailsStreamsWidget from "@/components/matches/details/widgets/MatchDetailsStreamsWidget.vue";
-import MatchIcons from "@/components/MatchIcons.vue";
+import GameTypeIcon from "@/components/GameTypeIcon.vue";
 import {useRoute} from "vue-router";
 import {useFetch} from "@/composables/app/useFetch";
 import {onBeforeMount} from "vue";
@@ -23,14 +23,14 @@ onBeforeMount(() => window.scrollTo(0, 0))
 
 <template>
   <AppLoader v-if="isLoading" />
-  <v-row v-else-if="match" class="ma-0">
+  <v-row v-else-if="match">
     <v-col class="ml-0 position-absolute" style="max-width: 15%">
       <v-row align="center">
-        <MatchIcons :id="match.videogame.id" class="mr-2" />
+        <GameTypeIcon :id="match.videogame.id" class="mr-2" />
         {{ match.videogame.name }}
       </v-row>
     </v-col>
-    <v-col>
+    <v-col class="pa-0">
       <MatchDetailsScore :match="match" class="ml-auto mr-auto" />
       <MatchDetailsRosters v-if="opponents" :rosters="opponents" />
     </v-col>

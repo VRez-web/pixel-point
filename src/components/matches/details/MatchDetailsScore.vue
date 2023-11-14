@@ -40,7 +40,7 @@ const matchType = computed(() => MATCH_GAME_TYPE[props.match.match_type])
           <v-img
               v-if="firstOpponent.image_url"
               :src="firstOpponent.image_url"
-              alt=""
+              alt="team or player logo"
               width="100"
               height="100"
               class="ml-auto mr-auto"
@@ -51,7 +51,7 @@ const matchType = computed(() => MATCH_GAME_TYPE[props.match.match_type])
         </v-col>
         <v-col justify="center" align="center" class="text-h2">
           <p class="text-caption">{{ matchType }} {{ match?.number_of_games }}</p>
-          <v-row justify="center" class="ma-0">
+          <v-row justify="center">
             <p>{{ firstOpponent?.score }}</p>
             <p>:</p>
             <p>{{ secondOpponent?.score }}</p>
@@ -60,7 +60,15 @@ const matchType = computed(() => MATCH_GAME_TYPE[props.match.match_type])
           <p class="text-body-1 mt-3">{{ match?.status }}</p>
         </v-col>
         <v-col v-if="secondOpponent" class="text-center">
-          <img v-if="secondOpponent.image_url" class="team-img" :src="secondOpponent.image_url" alt="">
+          <v-img
+              v-if="secondOpponent.image_url"
+              :src="secondOpponent.image_url"
+              alt="team or player logo"
+              width="100"
+              height="100"
+              class="ml-auto mr-auto"
+              cover
+          />
           <NoImageIcon v-else />
           <p>{{ secondOpponent.name }}</p>
         </v-col>
