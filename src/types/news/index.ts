@@ -10,19 +10,19 @@ import {IMatch} from "@/types/match";
 type TTVideogame = IVideoGame & { current_version?: StringOrNull }
 type TRoster = { players: IPlayer[], team: ITeam }
 
-interface ILeagueNews extends ILeague {
+export interface ILeagueNews extends ILeague {
   videogame: TTVideogame
   series: ISerie[]
 }
 
-interface ISerieNews extends ISerie {
+export interface ISerieNews extends ISerie {
   league: ILeague
   tournaments: ITournament[]
   videogame: IVideoGame
   videogame_title: IVideoGameTitle | null
 }
 
-interface ITournamentNews extends ITournament {
+export interface ITournamentNews extends ITournament {
   expected_roster: TRoster[]
   league: ILeague
   matches: Omit<IMatch, 'tournament'>[]
@@ -32,12 +32,12 @@ interface ITournamentNews extends ITournament {
   videogame_title: IVideoGameTitle | null
 }
 
-interface IPlayerNews extends IPlayer {
+export interface IPlayerNews extends IPlayer {
   current_team: ITeam | null
   current_videogame: IVideoGame | null
 }
 
-interface ITeamNews extends ITeam {
+export interface ITeamNews extends ITeam {
   current_videogame: IVideoGame | null
   players: IPlayer []
 }

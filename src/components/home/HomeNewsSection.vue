@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import HomeNewsCard from "@/components/home/HomeNewsCard.vue";
+import NewsCard from "@/components/news/card/NewsCard.vue";
+import AppLoader from "@/components/app/AppLoader.vue";
 import {INews} from "@/types/news";
 
 interface INewsProp {
@@ -12,15 +13,15 @@ interface IProp {
   news: INewsProp
 }
 
-const props = defineProps<IProp>()
+defineProps<IProp>()
 </script>
 
 <template>
   <v-sheet class="w-75">
-    <h3 class="text-h6">Last updates</h3>
-    <!--    <p v-if="news.isLoading">loading</p>-->
-    <v-row wrap>
-      <HomeNewsCard v-for="newsItem in news.data" :key="newsItem.id" :news-item="newsItem" />
+    <h3>Last updates</h3>
+    <AppLoader v-if="news.isLoading" />
+    <v-row v-else wrap>
+      <NewsCard v-for="newsItem in news.data" :key="newsItem.id" :news-item="newsItem" />
     </v-row>
   </v-sheet>
 </template>
