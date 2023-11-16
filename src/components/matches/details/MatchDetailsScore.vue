@@ -76,10 +76,3 @@ const matchType = computed(() => MATCH_GAME_TYPE[props.match.match_type])
     </v-sheet>
   </v-col>
 </template>
-
-<style lang="scss" scoped>
-.team-img {
-  width  : 100px;
-  height : 100px;
-}
-</style>

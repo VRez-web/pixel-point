@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import NewsCardBody from "@/components/news/card/body/NewsCardBody.vue";
 import GameTypeIcon from "@/components/GameTypeIcon.vue";
 import {INews} from "@/types/news";
 import {computed} from "vue";
@@ -19,7 +20,6 @@ const formatUpdateDate = computed(() => formatDate(new Date(props.newsItem.modif
   hour: '2-digit',
   minute: '2-digit'
 }))
-const title = computed(() => props.newsItem.type === 'serie' ? props.newsItem.object.full_name : props.newsItem.object.name)
 </script>
 
 <template>
@@ -29,25 +29,16 @@ const title = computed(() => props.newsItem.type === 'serie' ? props.newsItem.ob
       variant="tonal"
       link
   >
-    <v-card-item>
-      <div>
-        <div class="text-overline mb-1" />
-        <v-row justify="space-between" align="start" class="text-body-1 mb-1">
-          <v-row align="start">
-            <GameTypeIcon :id="videoGameId" />
-            <p class="ml-2"> {{ newsItem.type }} </p>
-          </v-row>
-          <p> {{ newsItem.change_type }}</p>
+    <v-card-item class="pa-1">
+      <v-row align="start" class="text-body-1 mb-1">
+        <v-row align="center" justify="end" class="position-absolute" style="right: 10px">
+          <GameTypeIcon :id="videoGameId" />
+          <p class="ml-2"> {{ newsItem.type }} ({{ newsItem.change_type }}) </p>
         </v-row>
-        <p class="text-body-1 mt-2">{{ title }}</p>
-      </div>
+      </v-row>
+      <NewsCardBody :type="newsItem.type" :info="newsItem.object" />
+      <p class="text-caption text-end">{{ formatUpdateDate }}</p>
     </v-card-item>
-    <v-card-actions class="align-end">
-      <p class="mr-auto text-caption">updated time: {{ formatUpdateDate }}</p>
-      <v-btn size="small" variant="outlined">
-        more details
-      </v-btn>
-    </v-card-actions>
   </v-card>
 </template>
 
